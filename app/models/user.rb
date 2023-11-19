@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
 
   has_many :email_verification_tokens, dependent: :destroy
   has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
+  has_one_attached :file
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 12 }
