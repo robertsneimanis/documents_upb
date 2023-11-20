@@ -1,12 +1,12 @@
-%p{style: 'color: green'}= notice
-%p
-  Signed as #{Current.user.email}
+%p.notice= notice
+%p Signed as #{Current.user.email}
 %h2 Login and verification
-%div
-  = link_to 'Change password', edit_password_path
-%div
-  = link_to 'Change email address', edit_identity_email_path
-%div
-  = link_to 'Attachments page', users_path
+
+= link_to 'Change password', edit_password_path, class: 'btn btn-primary'
+= link_to edit_identity_email_path, class: 'btn btn-primary' do
+  Change email address
 %br/
-= button_to 'Log out', Current.session, method: :delete
+= link_to users_path, class: 'btn btn-info' do
+  Attachments page
+= button_to Current.session, method: :delete, class: 'btn btn-warning' do
+  Log out

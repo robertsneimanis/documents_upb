@@ -6,8 +6,7 @@
     %tr
       %td Date to
       %td= datetime_field_tag 'created_to', params[:end_date]
-  %br/
-  = submit_tag 'Search'
+  = submit_tag 'Search', class: 'btn btn-info'
   - if params[:commit].present?
-    = link_to 'Cancel filter', users_path
-%br/
+    = link_to users_path, class: 'btn btn-info' do
+      Cancel filter

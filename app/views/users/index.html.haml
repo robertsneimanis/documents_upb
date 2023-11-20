@@ -1,14 +1,16 @@
+- from = params[:created_from]
+- to = params[:created_to]
+
 %h1 Attachments
 
-= link_to 'Home page', root_path, class: 'btn'
-%br/
-%br/
+= link_to 'Home page', root_path, class: 'btn btn-primary'
 
 = render 'search'
-= link_to 'Add attachment', edit_user_path(@current_user), class: 'btn'
-= link_to 'Download filtered list pdf', download_user_path(@current_user, created_from: params[:created_from], created_to: params[:created_to]), class: 'btn'
-%br/
-%br/
+= link_to 'Add attachment', edit_user_path(@current_user),
+          class: 'btn btn-primary'
+= link_to 'Download filtered list pdf',
+          download_user_path(@current_user, created_from: from, created_to: to),
+          class: 'btn btn-primary'
 
 %table
   %tr
@@ -21,7 +23,13 @@
     %tr
       %td= file.record.email
       %td= file.created_at.strftime('%d/%m/%Y %H:%M')
-      %td= render 'attachment', file: file
+      %td= render('attachment', file:)
       %td
-        = link_to 'Download', rails_blob_path(file, disposition: 'attachment')
-        = link_to 'Remove', remove_attachment_user_path(file), data: { turbo_method: :delete }
+        = link_to 'Download',
+                  rails_blob_path(file, disposition: 'attachment'),
+                  class: 'btn btn-warning'
+
+        = link_to 'Delete',
+                  remove_attachment_user_path(file),
+                  data: { turbo_method: :delete },
+                  class: 'btn btn-danger'

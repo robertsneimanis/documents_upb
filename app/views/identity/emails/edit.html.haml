@@ -1,4 +1,4 @@
-%p{style: 'color: red'}= alert
+%p.alert= alert
 - if Current.user.verified?
   %h1 Change your email
 - else
@@ -6,7 +6,7 @@
 
 = form_with(url: identity_email_path, method: :patch) do |form|
   - if @user.errors.any?
-    %div{style: 'color: red'}
+    .alert
       %h2
         = pluralize(@user.errors.count, 'error')
         prohibited this user from being saved:
@@ -14,13 +14,14 @@
         - @user.errors.each do |error|
           %li= error.full_message
   %div
-    = form.label :email, 'New email', style: 'display: block'
+    = form.label :email, 'New email', class: 'd-block'
     = form.email_field :email, required: true, autofocus: true
   %div
-    = form.label :current_password, style: 'display: block'
-    = form.password_field :current_password, required: true, autocomplete: 'current-password'
-  %div
-    = form.submit 'Save changes'
-%br/
-%div
-  = link_to 'Back', root_path
+    = form.label :current_password, class: 'd-block'
+    = form.password_field :current_password,
+                          required: true,
+                          autocomplete: 'current-password'
+
+  = form.submit 'Save changes', class: 'btn btn-primary'
+
+= link_to 'Back', root_path, class: 'btn btn-info'

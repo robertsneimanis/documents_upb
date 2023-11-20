@@ -1,8 +1,8 @@
-%h1 edit user files
+%h1 Edit files
 
 = form_with(model: @user, local: true) do |f|
   = f.file_field :files, multiple: true
   %br/
-  %br/
-  = f.submit
-= link_to 'Back', users_path
+  = f.submit 'Save', class: 'btn btn-info'
+
+= link_to 'Back', users_path, class: 'btn btn-info'

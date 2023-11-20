@@ -1,8 +1,8 @@
-%p{style: 'color: red'}= alert
+%p.alert= alert
 %h1 Change your password
 = form_with(url: password_path, method: :patch) do |form|
   - if @user.errors.any?
-    %div{style: 'color: red'}
+    .alert
       %h2
         = pluralize(@user.errors.count, 'error')
         prohibited this user from being saved:
@@ -10,17 +10,24 @@
         - @user.errors.each do |error|
           %li= error.full_message
   %div
-    = form.label :current_password, style: 'display: block'
-    = form.password_field :current_password, required: true, autofocus: true, autocomplete: 'current-password'
+    = form.label :current_password, class: 'd-block'
+    = form.password_field :current_password,
+                          required: true,
+                          autofocus: true,
+                          autocomplete: 'current-password'
   %div
-    = form.label :password, 'New password', style: 'display: block'
-    = form.password_field :password, required: true, autocomplete: 'new-password'
+    = form.label :password, 'New password', class: 'd-block'
+    = form.password_field :password,
+                          required: true,
+                          autocomplete: 'new-password'
     %div 12 characters minimum.
   %div
-    = form.label :password_confirmation, 'Confirm new password', style: 'display: block'
-    = form.password_field :password_confirmation, required: true, autocomplete: 'new-password'
-  %div
-    = form.submit 'Save changes'
-%br/
-%div
-  = link_to 'Back', root_path
+    = form.label :password_confirmation,
+                 'Confirm new password',
+                 class: 'd-block'
+    = form.password_field :password_confirmation,
+                          required: true,
+                          autocomplete: 'new-password'
+
+  = form.submit 'Save changes', class: 'btn btn-primary'
+= link_to 'Back', root_path, class: 'btn btn-info'
