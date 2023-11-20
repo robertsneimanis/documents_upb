@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.btn {
+  background-color: coral;
+  color: #ffffff;
+  border-radius: 20px;
+  border-width: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  height: 20px;
+  padding: 0 25px;
+  transition: all 200ms;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.document-image {
+  height: 100px;
+}
+
+.document-video {
+  max-height: 400px;
+}

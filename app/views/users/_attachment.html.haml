@@ -1,0 +1,8 @@
+- if file.image?
+  = image_tag(file, class: 'document-image')
+- elsif file.video?
+  = video_tag(url_for(file), class: 'document-video', controls: '')
+- elsif file.audio?
+  = audio_tag(url_for(file), class: 'document-audio', controls: '')
+- else
+  = file.filename

@@ -1,0 +1,13 @@
+= form_tag users_path, method: :get do
+  %table
+    %tr
+      %td Date from
+      %td= datetime_field_tag 'created_from', params[:start_date]
+    %tr
+      %td Date to
+      %td= datetime_field_tag 'created_to', params[:end_date]
+  %br/
+  = submit_tag 'Search'
+  - if params[:commit].present?
+    = link_to 'Cancel filter', users_path
+%br/

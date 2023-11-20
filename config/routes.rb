@@ -13,5 +13,10 @@ Rails.application.routes.draw do
     resource :password_reset,     only: %i[new edit create update]
   end
   root 'home#index'
-  resources :reports, only: [:index]
+  resources :users, only: %i[index edit update] do
+    member do
+      delete :remove_attachment
+      get :download
+    end
+  end
 end

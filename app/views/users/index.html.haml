@@ -1,0 +1,23 @@
+%h1 Documents
+
+= render 'search'
+= link_to 'Add attachment', edit_user_path(@current_user), class: 'btn'
+= link_to 'Download filtered list pdf', download_user_path(@current_user, created_from: params[:created_from], created_to: params[:created_to]), class: 'btn'
+%br/
+%br/
+
+%table
+  %tr
+    %th User
+    %th Created at
+    %th Attachment
+    %th Actions
+
+  - @attachments.each do |file|
+    %tr
+      %td= file.record.email
+      %td= file.created_at.strftime('%d/%m/%Y %H:%M')
+      %td= render 'attachment', file: file
+      %td
+        = link_to 'Download', rails_blob_path(file, disposition: 'attachment')
+        = link_to 'Remove', remove_attachment_user_path(file), data: { turbo_method: :delete }
